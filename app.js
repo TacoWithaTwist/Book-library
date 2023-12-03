@@ -3,7 +3,7 @@ var displayButton = document.getElementById("displayBook")
 button.addEventListener('click',addBookToLibrary)
 displayButton.addEventListener('click',displayBook)
 
-function Book(title,author,pages,readStatus,bookID){
+function Book(title,author,pages,readStatus){
     this.title = title
     this.author = author
     this.pages = pages
@@ -26,6 +26,7 @@ function addBookToLibrary(){
     dialog.showModal();
     const dialogSubmit = document.getElementById("dialogSubmit")
     dialogSubmit.addEventListener("click",function(){
+        const test = true
         const title = document.getElementById("title").value
         const author = document.getElementById("author").value
         const pages = document.getElementById("pages").value
@@ -77,7 +78,7 @@ function displayBook(){
             })
             for (var key in book){
                 if(key == 'changeStatus'){
-                    continue
+                    break
                 }
                 var li = document.createElement("li");
                 li.className = "card-text"
