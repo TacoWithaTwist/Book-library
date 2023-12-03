@@ -2,7 +2,9 @@ var button = document.getElementById("newBook")
 var displayButton = document.getElementById("displayBook")
 button.addEventListener('click',addBookToLibrary)
 displayButton.addEventListener('click',displayBook)
-
+const dialogSubmit = document.getElementById("dialogSubmit")
+const removeButton = document.getElementById("removeButton")
+const myLibrary = []
 function Book(title,author,pages,readStatus){
     this.title = title
     this.author = author
@@ -17,28 +19,10 @@ function Book(title,author,pages,readStatus){
         }
     }
 }
-const livre = new Book('How to Raise your BABY','Angela Merkel','100','N')
-const myLibrary = [livre]
-
-
 function addBookToLibrary(){
     const dialog = document.getElementById("dialog")
     dialog.showModal();
-    const dialogSubmit = document.getElementById("dialogSubmit")
-    dialogSubmit.addEventListener("click",function(){
-        const test = true
-        const title = document.getElementById("title").value
-        const author = document.getElementById("author").value
-        const pages = document.getElementById("pages").value
-        const readStatus = document.getElementById("status").value
-        const newBook = new Book(title,author,pages,readStatus)
-        myLibrary.push(newBook)
-        console.log(myLibrary)
-        dialog.close()
-    })
-
 }
-
 function displayBook(){
     const container = document.getElementById("container")
     const getCard = document.getElementById("cards")
@@ -49,6 +33,7 @@ function displayBook(){
         }
         container.removeChild(getCard)
     }
+    let i = 0
     myLibrary.forEach(book => {
             const card = document.createElement("div")
             card.className = "cards"
@@ -58,7 +43,7 @@ function displayBook(){
             const cardButtonContainer = document.createElement("div")
             cardButtonContainer.className = "cardButtonContainer"
             removeButton.className = "statusButton"
-            removeButton.innerHTML = "Remove Card"
+            removeButton.innerHTML = "Remove Book"
             statusButton.className = "statusButton"
             statusButton.id = "statusButton"
             statusButton.innerHTML = "Change Status"
@@ -69,12 +54,14 @@ function displayBook(){
             var ul = document.createElement("ul")
             ul.className = "card-text"
             card.appendChild(ul)
-            removeButton.addEventListener("click",function(){
-                container.removeChild(card)
-            })
             statusButton.addEventListener("click",function(){
                 book.changeStatus()
                 displayBook()
+            })
+            removeButton.addEventListener("click",function(i){
+            myLibrary.splice(i,1)
+            container.removeChild(card)
+            console.log(myLibrary)
             })
             for (var key in book){
                 if(key == 'changeStatus'){
@@ -85,5 +72,19 @@ function displayBook(){
                 li.innerHTML = `<strong>${key}:</strong> ${book[key]}`;
                 ul.appendChild(li)
             }
+            ul.value = i
+            i++
     });
 }
+
+dialogSubmit.addEventListener("click",function(){
+    const title = document.getElementById("title").value
+    const author = document.getElementById("author").value
+    const pages = document.getElementById("pages").value
+    const readStatus = document.getElementById("status").value
+    const newBook = new Book(title,author,pages,readStatus)
+    console.log(newBook)
+    myLibrary.push(newBook)
+    console.log(myLibrary)
+    dialog.close()
+})

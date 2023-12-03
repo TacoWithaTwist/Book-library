@@ -8,12 +8,16 @@ body{
     gap: 10vh;
     align-items:center;
     font-family: 'Noto Serif',serif ;
-    background-color:  #FFEAD0;
+    background-color:  #474350;
 }
 
-
+h1{
+    color: #B2ABF2;
+}
 /*Buttons*/
-
+button{
+    border-radius: 10px;
+}
 
 .buttons-container{
     display: flex;
@@ -23,9 +27,9 @@ body{
 .buttons-container>button{
     font-family: 'Noto Serif',serif ;
     font-weight: 600;
-    background: none;
-    border-color: #F76F8E;
-    color: #F76F8E;
+    background-color: #B2ABF2;
+    border-color: #FCFFEB;
+    color: #FCFFEB;
     width: 20vw;
     height: 10vh;
 }
@@ -36,9 +40,9 @@ body{
 .statusButton{
     width: 50%;
     height: 100%;
-    background-color: #FFEAD0;
-    border: #F76F8E solid 0.1em;
-    color: #F76F8E;
+    background-color: #474350;
+    border: #FCFFEB solid 0.1em;
+    color: #FCFFEB;
 }
 
 /*Cards*/
@@ -54,9 +58,9 @@ body{
     height: 40vh;
 }
 .cards{
-    border: solid #F76F8E 2px;
+    border: solid #FCFFEB 2px;
     border-radius: 2%;
-    background-color: #FBADAF;
+    background-color: #B2ABF2;
     font-family: 'Noto Serif', serif;
     font-size: 3vh;
     width: 60vh;
@@ -65,8 +69,7 @@ body{
 }
 .card-text{
     list-style: disc;
-    color: #F76F8E;
-    -webkit-text-stroke: black 0.03em;
+    color: #FCFFEB;
     font-family: 'Nova Square', serif;
     font-size: 5vh;
 }
@@ -74,10 +77,14 @@ body{
 /*Dialog*/
 
 #dialog{
-    background-color: #F76F8E;
-    color: #FBADAF;
+    background-color: #474350;
+    color: #B2ABF2;
+    width: 20%;
 }
 #dialog>form>input{
     border: none;
-    background-color: #FFEAD0 ;
+    background-color: #B2ABF2 ;
+}
+#dialog>form>label{
+    padding-right: 10px;
 }
