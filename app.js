@@ -2,25 +2,39 @@ var button = document.getElementById("newBook")
 var displayButton = document.getElementById("displayBook")
 button.addEventListener('click',addBookToLibrary)
 displayButton.addEventListener('click',displayBook)
-const myLibrary = [{title:'How to Raise your BABY',author:'Angela Merkel',pages:'100',status:'unread'}]
 
-
-function Book(title,author,pages,read){
+function Book(title,author,pages,readStatus,bookID){
     this.title = title
     this.author = author
     this.pages = pages
-    this.status = read
+    this.readStatus = readStatus
+    this.bookID = `${title[0]+author[0]+pages}` 
+    this.changeStatus = function (){
+        if(this.readStatus == 'N'){
+            this.readStatus = 'Y'
+        }else{
+            this.readStatus = 'N'
+        }
+    }
 }
+const livre = new Book('How to Raise your BABY','Angela Merkel','100','N')
+const myLibrary = [livre]
 
 
 function addBookToLibrary(){
-    const title = prompt("Give new book title")
-    const author = prompt("Give new book author")
-    const pages = prompt("Give new book pages")
-    const status = prompt("Give new book read or not")
-    const newBook = new Book (title,author,pages,status)
-    myLibrary.push(newBook)
-    console.log(myLibrary)
+    const dialog = document.getElementById("dialog")
+    dialog.showModal();
+    const dialogSubmit = document.getElementById("dialogSubmit")
+    dialogSubmit.addEventListener("click",function(){
+        const title = document.getElementById("title").value
+        const author = document.getElementById("author").value
+        const pages = document.getElementById("pages").value
+        const readStatus = document.getElementById("status").value
+        const newBook = new Book(title,author,pages,readStatus)
+        myLibrary.push(newBook)
+        console.log(myLibrary)
+        dialog.close()
+    })
 
 }
 
@@ -38,11 +52,33 @@ function displayBook(){
             const card = document.createElement("div")
             card.className = "cards"
             card.id = "cards"
-            container.appendChild(card);
-            var ul = document.createElement("ul");
+            const statusButton = document.createElement("button")
+            const removeButton = document.createElement("button")
+            const cardButtonContainer = document.createElement("div")
+            cardButtonContainer.className = "cardButtonContainer"
+            removeButton.className = "statusButton"
+            removeButton.innerHTML = "Remove Card"
+            statusButton.className = "statusButton"
+            statusButton.id = "statusButton"
+            statusButton.innerHTML = "Change Status"
+            cardButtonContainer.appendChild(statusButton)
+            cardButtonContainer.appendChild(removeButton)
+            card.appendChild(cardButtonContainer)
+            container.appendChild(card)
+            var ul = document.createElement("ul")
             ul.className = "card-text"
             card.appendChild(ul)
+            removeButton.addEventListener("click",function(){
+                container.removeChild(card)
+            })
+            statusButton.addEventListener("click",function(){
+                book.changeStatus()
+                displayBook()
+            })
             for (var key in book){
+                if(key == 'changeStatus'){
+                    continue
+                }
                 var li = document.createElement("li");
                 li.className = "card-text"
                 li.innerHTML = `<strong>${key}:</strong> ${book[key]}`;

@@ -5,8 +5,7 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 0;
-    justify-content: space-around;
+    gap: 10vh;
     align-items:center;
     font-family: 'Noto Serif',serif ;
     background-color:  #FFEAD0;
@@ -30,6 +29,17 @@ body{
     width: 20vw;
     height: 10vh;
 }
+.cardButtonContainer{
+    width: 100%;
+    height: 25%;
+}
+.statusButton{
+    width: 50%;
+    height: 100%;
+    background-color: #FFEAD0;
+    border: #F76F8E solid 0.1em;
+    color: #F76F8E;
+}
 
 /*Cards*/
 
@@ -50,7 +60,7 @@ body{
     font-family: 'Noto Serif', serif;
     font-size: 3vh;
     width: 60vh;
-    height: 40vh;
+    height: 60vh;
     padding: 2%;
 }
 .card-text{
@@ -59,4 +69,15 @@ body{
     -webkit-text-stroke: black 0.03em;
     font-family: 'Nova Square', serif;
     font-size: 5vh;
+}
+
+/*Dialog*/
+
+#dialog{
+    background-color: #F76F8E;
+    color: #FBADAF;
+}
+#dialog>form>input{
+    border: none;
+    background-color: #FFEAD0 ;
 }
